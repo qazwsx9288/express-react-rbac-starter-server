@@ -58,4 +58,16 @@ router.put('/', async (req, res, next) => {
   }
 });
 
+// @PermissionDes 登陆
+router.post('/login', async (req, res, next) => {
+  console.log(req.body);
+  try {
+    const { username, password } = req.body;
+    const result = await userService.login(username, password);
+    res.json(ResData.success({ data: result }));
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;

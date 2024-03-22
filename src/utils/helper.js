@@ -7,12 +7,16 @@ module.exports = {
       return false;
     }
 
-    config.permissionWhitelist.forEach((route) => {
+    const hasRoute = config.permissionWhitelist.find((route) => {
       const whiteRoute = `${route.method} ${route.path}`;
       if (whiteRoute === fullName) {
         return true;
       }
     });
+
+    if (hasRoute) {
+      return true;
+    }
 
     return false;
   },
